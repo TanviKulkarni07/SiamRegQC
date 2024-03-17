@@ -40,22 +40,12 @@ print('---------------Loaded Model------------------')
 print(vxm_file)
 vxm_model.load_state_dict(torch.load(vxm_file))
 ts_list = []
-ants_list = []
+
 for gt_file in tqdm(GT_files):
     print(gt_file)
     ref = np.load(gt_file.replace('ground_truth_sections', 'ground_truth_sections_T2').replace('T1', 'T2'))
     img = np.load(gt_file.replace('ground_truth_sections', 'affine_registered_sections'))
-
-    # fi_ants = ants.from_numpy(ref)
-    # mi_ants = ants.from_numpy(img)
-    # step_start_time = time.time()
-    # mytx = ants.registration(fixed=fi_ants, moving=mi_ants, type_of_transform = 'Affine',
-    #                     aff_metric='CC')
-    # moved_section = mytx['warpedmovout'].numpy()
-    # ants_list += [time.time() - step_start_time]
-    # np.save(gt_file.replace('ground_truth_sections', f'multimodal_affine_registered_sections'), moved_section)
     
-    # inputs1 = pt_transform(moved_section).unsqueeze(0)
     inputs1 = pt_transform(img).unsqueeze(0)
     inputs2 = pt_transform(ref).unsqueeze(0)
     inputs1 = inputs1.type(torch.FloatTensor).to(device)
@@ -72,5 +62,3 @@ for gt_file in tqdm(GT_files):
                 gt_file.replace('ground_truth_sections', f'visualize_{pref}_sections_T1').replace('.npy', f'.png') )
     print(f'------------Saving to {out_file}----------------')
 print(f'Average VXM Inference Time!: {np.mean(ts_list):.3f}')
-# print(f'Average ANTS Inference Time!: {np.mean(ants_list):.3f}')
-
