@@ -1,2 +1,3 @@
 # SiamRegQC
- Deep similarity metric for registration evaluation
+ Official Code for "Registration Quality Evaluation Metric with Self-Supervised
+Siamese Networks"
