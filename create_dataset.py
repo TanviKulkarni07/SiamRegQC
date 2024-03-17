@@ -21,10 +21,7 @@ def create_multimodal_data(GT_files, transform):
         multi_data += true_data + false_data
     multi_dataloader = DataLoader(multi_data, batch_size=32, shuffle=True)
     input1, input2, label = next(iter(multi_dataloader))
-    visualise_AE_ipop(input2, 5)
-    plt.savefig('ainvayi.png')
-    visualise_AE_ipop(input1, 5)
-    plt.savefig('ainvayi1.png')
+
     return multi_data, multi_dataloader
 
 

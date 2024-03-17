@@ -49,10 +49,6 @@ def compare_algorithms_Elastic(df, filename):
             ttest_results['mean'].append(group1.mean())
             ttest_results['std'].append(group1.std())
 
-            # ttest_results[f'{type}_{metric}_T-stat'] = t_statistic
-            # ttest_results[f'{type}_{metric}_p-val'] = p_value
-            # ttest_results[f'{type}_{metric}_mean'] = group1.mean()
-            # ttest_results[f'{type}_{metric}_std'] = group1.std()
     ttest_df = pd.DataFrame(ttest_results)
     print(f'Saving to {filename}')
     # ttest_df.to_csv(filename, index=False)
